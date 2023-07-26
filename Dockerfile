@@ -17,4 +17,4 @@ RUN dotnet publish "Haru.Api.csproj" -c Release -o /app/publish /p:UseAppHost=fa
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Haru.Api..dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet Haru.Api.dll
