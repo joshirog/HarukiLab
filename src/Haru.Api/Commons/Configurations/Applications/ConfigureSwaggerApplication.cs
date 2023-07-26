@@ -6,9 +6,6 @@ public static class ConfigureSwaggerApplication
 {
     public static void AddSwaggerApplication(this WebApplication app)
     {
-        //if (!app.Environment.IsDevelopment()) 
-        //return;
-
         app.UseSwagger();
         
         app.UseSwaggerUI(options =>

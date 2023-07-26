@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{4D39B6AA-D62
 		README.md = README.md
 		RELEASES.md = RELEASES.md
 		ROADMAP.md = ROADMAP.md
+		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D3505F89-8EA2-466A-B07A-456E6492CFCB}"

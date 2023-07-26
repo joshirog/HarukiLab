@@ -7,7 +7,7 @@ namespace Haru.Api.Commons.Configurations.Builders;
 
 public static class ConfigureSerilogBuilder
 {
-    private const string template = "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}";
+    private const string Template = "[{Timestamp:yyyy-MM-dd HH:mm:ss.fff}] [{Level:u3}] [{SourceContext}] {Message:lj}{NewLine}{Exception}";
     
     public static void AddSerilogBuilder(this WebApplicationBuilder builder)
     {
@@ -26,12 +26,12 @@ public static class ConfigureSerilogBuilder
                     .MinimumLevel.Override("Microsoft.EntityFrameworkCore", new LoggingLevelSwitch(LogEventLevel.Warning))
                     .MinimumLevel.Override("Microsoft.Hosting.Lifetime", new LoggingLevelSwitch(LogEventLevel.Warning))
                     .WriteTo.Debug()
-                    .WriteTo.File(Path.Combine(Directory.GetCurrentDirectory(), "Logs/Api-.log"),
+                    /*.WriteTo.File(Path.Combine(Directory.GetCurrentDirectory(), "Logs/Api-.log"),
                         shared: false,
                         rollingInterval: RollingInterval.Day,
                         levelSwitch: new LoggingLevelSwitch(),
-                        outputTemplate: template)
-                    .WriteTo.Console(outputTemplate: template);
+                        outputTemplate: template)*/
+                    .WriteTo.Console(outputTemplate: Template);
             }
         );
     }

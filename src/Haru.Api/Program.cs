@@ -10,6 +10,7 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 builder.AddSettingBuilder();
 builder.AddSerilogBuilder();
+builder.AddWatchDogBuilderBuilder();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddIdentityService();
@@ -26,6 +27,7 @@ builder.Services.AddLazyCache();
 builder.Services.AddHangfireService();
 builder.Services.AddHealthCheckService();
 builder.Services.AddBackgroundTaskService();
+builder.Services.AddWatchDogService();
 
 var app = builder.Build();
 app.AddEnvironmentApplication();
@@ -33,6 +35,7 @@ app.UseCors(SettingConstant.Cors);
 app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 app.AddHangfireApplication();
+app.AddWatchDogApplication();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
