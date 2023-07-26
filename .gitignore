@@ -40,3 +40,4 @@ Desktop.ini
 .DS_Store
 .idea/*
 appsettings.json
+appsettings.Development.json

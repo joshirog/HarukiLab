@@ -1,6 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{4D39B6AA-D627-41D2-ABC8-9107B8995B85}"
+	ProjectSection(SolutionItems) = preProject
+		doc\CHANGELOG.md = doc\CHANGELOG.md
+		doc\README.md = doc\README.md
+		doc\LICENCE = doc\LICENCE
+		doc\NOTE.md = doc\NOTE.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D3505F89-8EA2-466A-B07A-456E6492CFCB}"
 EndProject

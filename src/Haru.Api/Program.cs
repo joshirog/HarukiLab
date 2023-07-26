@@ -1,27 +1,40 @@
+using Haru.Api.Commons.Configurations.Applications;
+using Haru.Api.Commons.Configurations.Builders;
+using Haru.Api.Commons.Configurations.Services;
+using Haru.Api.Commons.Constants;
+using Serilog;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.AddSettingBuilder();
+builder.AddSerilogBuilder();
+
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddIdentityService();
+builder.Services.AddDependencyService();
+builder.Services.AddAuthenticationService();
+builder.Services.AddControllerService();
+builder.Services.AddCorsService();
+builder.Services.AddVersionService();
+builder.Services.AddSwaggerService();
+builder.Services.AddProblemDetails();
+builder.Services.AddContextService();
+builder.Services.AddHttpClientService();
+builder.Services.AddLazyCache();
+builder.Services.AddHangfireService();
+builder.Services.AddHealthCheckService();
+builder.Services.AddBackgroundTaskService();
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    
-}
-
-app.UseSwagger();
-app.UseSwaggerUI();
-
+app.AddEnvironmentApplication();
+app.UseCors(SettingConstant.Cors);
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
-
+app.AddHangfireApplication();
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
+app.AddHealthCheckApplication();
 app.Run();
