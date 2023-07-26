@@ -21,6 +21,8 @@ public static class SettingConstant
     
     public static string HangfireConnectionString { get; set; }
     
+    public static string WatchDogConnectionString { get; set; }
+    
     public static string Cors { get; set; }
     
     public static string Identity { get; set; }
@@ -42,6 +44,14 @@ public static class SettingConstant
     public static string HangfireUserName { get; set; }
     
     public static string HangfirePassword { get; set; }
+
+    #endregion
+    
+    #region WatchDog
+
+    public static string WatchDogUserName { get; set; }
+    
+    public static string WatchDogPassword { get; set; }
 
     #endregion
     
@@ -97,6 +107,9 @@ public static class SettingConstant
             HangfireConnectionString = configuration.GetConnectionString("HangfireConnection");
             HangfireUserName = configuration.GetSection("Hangfire:Credentials:UserName").Value;
             HangfirePassword = configuration.GetSection("Hangfire:Credentials:Password").Value;
+            WatchDogConnectionString = configuration.GetConnectionString("WatchDogConnection");
+            WatchDogUserName = configuration.GetSection("WatchDog:Credentials:UserName").Value;
+            WatchDogPassword = configuration.GetSection("WatchDog:Credentials:Password").Value;
             Cors = configuration.GetSection("AppSettings:Cors").Value;
             Identity = configuration.GetSection("AppSettings:Identity").Value;
             SendInBlueApiKey = configuration.GetSection("SendInBlue:ApiKey").Value;
@@ -129,8 +142,11 @@ public static class SettingConstant
             WebRouteReset = Environment.GetEnvironmentVariable("APP_SETTINGS_WEB_ROUTE_RESET");
             DefaultConnectionString = Environment.GetEnvironmentVariable("DATABASE_URL");
             HangfireConnectionString = Environment.GetEnvironmentVariable("HANGFIRE_CONNECTION");
+            WatchDogConnectionString = Environment.GetEnvironmentVariable("WATCHDOG_CONNECTION");
             HangfireUserName = Environment.GetEnvironmentVariable("HANGFIRE_USERNAME");
             HangfirePassword = Environment.GetEnvironmentVariable("HANGFIRE_PASSWORD");
+            WatchDogUserName =  Environment.GetEnvironmentVariable("WATCHDOG_USERNAME");
+            WatchDogPassword = Environment.GetEnvironmentVariable("WATCHDOG_PASSWORD");
             Cors = Environment.GetEnvironmentVariable("APP_SETTINGS_CORS");
             Identity = Environment.GetEnvironmentVariable("APP_SETTINGS_IDENTITY");
             SendInBlueApiKey = Environment.GetEnvironmentVariable("SENDINBLUE_APIKEY");
@@ -162,8 +178,11 @@ public static class SettingConstant
         Console.WriteLine($"WebRouteExternal : {WebRouteReset}");
         Console.WriteLine($"DefaultConnectionString : {DefaultConnectionString}");
         Console.WriteLine($"HangfireConnectionString : {HangfireConnectionString}");
+        Console.WriteLine($"WatchDogConnectionString : {WatchDogConnectionString}");
         Console.WriteLine($"HangfireUserName : {HangfireUserName}");
         Console.WriteLine($"HangfirePassword : {HangfireUserName}");
+        Console.WriteLine($"WatchDogUserName : {WatchDogUserName}");
+        Console.WriteLine($"WatchDogPassword : {WatchDogPassword}");
         Console.WriteLine($"Cors : {Cors}");
         Console.WriteLine($"Identity : {Identity}");
         Console.WriteLine($"SendInBlueApiKey : {SendInBlueApiKey}");
