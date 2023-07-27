@@ -86,7 +86,7 @@ public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
     {
         var info = new OpenApiInfo()
         {
-            Title = "Haruki API",
+            Title = "Haru API",
             Version = desc.ApiVersion.ToString(),
             Description = "An API to managements apps",
             TermsOfService = new Uri("https://example.com/terms"),

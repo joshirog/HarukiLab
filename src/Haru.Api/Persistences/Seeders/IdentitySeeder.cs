@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Haru.Api.Commons.Constants;
 using Haru.Api.Commons.Enums;
@@ -16,14 +17,14 @@ public static class IdentitySeeder
 
         var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
 
-        if (await userManager.FindByNameAsync("administrator@haruki.com") is not null) 
+        if (await userManager.FindByNameAsync("administrator@haru.com") is not null) 
             return;
         
         var user = new User
         {
             Id = Guid.NewGuid(),
-            UserName = "administrator@haruki.com",
-            Email = "administrator@haruki.com",
+            UserName = "administrator@haru.com",
+            Email = "administrator@haru.com",
             EmailConfirmed = false,
             PhoneNumber = "946678198",
             Status = Enum.GetName(typeof(StatusEnum), StatusEnum.Active),
@@ -87,17 +88,18 @@ public static class IdentitySeeder
         
         await userManager.AddClaimsAsync(user, new List<Claim>
         {
-            new(ClaimTypes.Sid, user.Id.ToString()),
-            new(ClaimTypes.Email, user.Email),
-            new(ClaimTypes.Name, "Jose Luis"),
-            new(ClaimTypes.Surname, "Oshiro Gushiken"),
-            new(ClaimTypes.GivenName, "JO"),
-            new(ClaimTypes.DateOfBirth, "1986-08-31"),
-            new(ClaimTypes.Gender, "male"),
-            new(ClaimTypes.MobilePhone, "946678198"),
-            new(ClaimTypes.Country, "PE"),
-            new(ClaimTypes.Role, Enum.GetName(typeof(RoleEnum), RoleEnum.Administrator)!),
-            new(ClaimTypes.UserData, GeneralConstant.DefaultAvatar, ClaimValueTypes.String)
+            new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            new(JwtRegisteredClaimNames.Email, user.Email),
+            new(JwtRegisteredClaimNames.Name, "Jose Luis"),
+            new(JwtRegisteredClaimNames.FamilyName, "Oshiro Gushiken"),
+            new(JwtRegisteredClaimNames.GivenName, "JO"),
+            new(JwtRegisteredClaimNames.Birthdate, "1986-08-31"),
+            new(JwtRegisteredClaimNames.GivenName, "JO"),
+            new(JwtRegisteredClaimNames.UniqueName, user.PhoneNumber!),
+            new(JwtRegisteredClaimNames.Gender, "male"),
+            new(JwtRegisteredClaimNames.Actort, GeneralConstant.DefaultAvatar),
+            new("role", Enum.GetName(typeof(RoleEnum), RoleEnum.Administrator)!)
         });
     }
 }

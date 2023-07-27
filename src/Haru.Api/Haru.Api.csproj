@@ -44,6 +44,7 @@
     <ItemGroup>
       <Folder Include="Domains\Core\" />
       <Folder Include="Features\" />
+      <Folder Include="Features\V1\Intranet\" />
       <Folder Include="Persistences\Migrations\" />
     </ItemGroup>
 

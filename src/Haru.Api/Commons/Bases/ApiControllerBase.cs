@@ -6,7 +6,7 @@ namespace Haru.Api.Commons.Bases;
 
 [ApiController]
 [Authorize]
-[Route( "api/v{version:apiVersion}/[controller]" )]
+[Route( "api/[controller]" )]
 public abstract class ApiControllerBase : ControllerBase
 {
     private ISender _mediator;
