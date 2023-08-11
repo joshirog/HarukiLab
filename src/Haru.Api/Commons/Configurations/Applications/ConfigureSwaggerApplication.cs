@@ -1,0 +1,20 @@
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+
+namespace Haru.Api.Commons.Configurations.Applications;
+
+public static class ConfigureSwaggerApplication
+{
+    public static void AddSwaggerApplication(this WebApplication app)
+    {
+        app.UseSwagger();
+        
+        app.UseSwaggerUI(options =>
+        {
+            foreach (var description in app.Services.GetRequiredService<IApiVersionDescriptionProvider>().ApiVersionDescriptions)
+            {
+                options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                    description.GroupName.ToUpperInvariant());
+            }
+        });
+    }
+}
